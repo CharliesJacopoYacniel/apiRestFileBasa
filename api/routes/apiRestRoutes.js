@@ -3,14 +3,16 @@
 module.exports = function(app) {
 //=================================================================================================
 var apiRestpe1 = require('../controllers/apiRestPE1Controller');
-app.route('/pe1')
-  .get(apiRestpe1.list_all_pe1Schema)
-  .post(apiRestpe1.create_a_pe1Schema);
 
-// app.route('/files/:dateSearch')
-//   .get(apiRestFileBasa.read_a_task)
-//   .put(apiRestFileBasa.update_a_task)
-//   .delete(apiRestFileBasa.delete_a_task);
+app.route('/pe1')
+    //  .post(apiRestpe1.list_all_pe1Schema)
+     .get(apiRestpe1.list_all_pe1Schema)
+     .post(apiRestpe1.validate_a_pe1Schema);
+
+// app.route('/pe1')
+//   .get(apiRestpe1.read_a_pe1Schema)
+//   .put(apiRestpe1.update_a_pe1Schema)
+//   .delete(apiRestpe1.delete_a_pe1Schema);
 
 //=================================================================================================
 var apiRestpe2 = require('../controllers/apiRestPE2Controller');
