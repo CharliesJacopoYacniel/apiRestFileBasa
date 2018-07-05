@@ -107,18 +107,18 @@ var pagoEmpresarial1Schema = new Schema({
     },
     crc: {
       type:String,
-      // required: 'Es requerido que ingrese un valor al campo'
+      required: 'Es requerido que ingrese un valor al campo'
+    },
+    message: {
+      type:String,
+      required: 'Es requerido que ingrese un valor al campo'
     },
             Created_date: {
               type: Date,
               default: Date.now,
             },
             status: {
-              type: [{
-                type: String,
-                enum: ['recibido', 'En proceso', 'validado','repetido']
-              }],
-              default: ['recibido']
+                type: String,   
             }
 });
 module.exports = mongoose.model('pagoEmpresarial1', pagoEmpresarial1Schema);
