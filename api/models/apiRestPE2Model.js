@@ -3,63 +3,239 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var pagoEmpresarial2Schema = new Schema({
+    tipo: {
+          byte:
+          {
+            type: String,
+            required: 'Es requerido que ingrese un valor al campo'
+          },
+          ubicacion:
+          {
+            type: String,
+            required: 'Es requerido que ingrese un valor al campo'
+          },
+          valor:
+          {
+            type: String,
+            required: 'Es requerido que ingrese un valor al campo'
+          }
+      },  
     beneficiario: {
-        type: String,
-        required: 'Es requerido que ingrese un nombre al nuevo archivo'
+            byte:
+            {
+              type: String,
+              required: 'Es requerido que ingrese un valor al campo'
+            },
+            ubicacion:
+            {
+              type: String,
+              required: 'Es requerido que ingrese un valor al campo'
+            },
+            valor:
+            {
+              type: String,
+              required: 'Es requerido que ingrese un valor al campo'
+            }
       },
       banco:{
-        type:String,
-        required: 'EL valor por defecto es 01,aun asi es requerido'
+            byte:
+            {
+              type: String,
+              required: 'Es requerido que ingrese un valor al campo'
+            },
+            ubicacion:
+            {
+              type: String,
+              required: 'Es requerido que ingrese un valor al campo'
+            },
+            valor:
+            {
+              type: String,
+              required: 'Es requerido que ingrese un valor al campo'
+            }
       },
       empresa: {
-        type: String,
-        required: 'Es requerido que ingrese el codigo de empresa'
+            byte:
+            {
+              type: String,
+              required: 'Es requerido que ingrese un valor al campo'
+            },
+            ubicacion:
+            {
+              type: String,
+              required: 'Es requerido que ingrese un valor al campo'
+            },
+            valor:
+            {
+              type: String,
+              required: 'Es requerido que ingrese un valor al campo'
+            }
       },
       servicio: {
-        type: String,
-        required: 'Es requerido que ingrese la ubicacion del archivo'
+            byte:
+          {
+            type: String,
+            required: 'Es requerido que ingrese un valor al campo'
+          },
+          ubicacion:
+          {
+            type: String,
+            required: 'Es requerido que ingrese un valor al campo'
+          },
+          valor:
+          {
+            type: String,
+            required: 'Es requerido que ingrese un valor al campo'
+          }
       },
       neto: {
-        type: Number,
-        required: 'Es requerido que ingrese la descripcion del archivo'
+          byte:
+          {
+            type: String,
+            required: 'Es requerido que ingrese un valor al campo'
+          },
+          ubicacion:
+          {
+            type: String,
+            required: 'Es requerido que ingrese un valor al campo'
+          },
+          valor:
+          {
+            type: String,
+            required: 'Es requerido que ingrese un valor al campo'
+          }
       },
       totReg: {
-        type: String,
-        required: 'Es requerido que ingrese el total de registro'
+          byte:
+          {
+            type: String,
+            required: 'Es requerido que ingrese un valor al campo'
+          },
+          ubicacion:
+          {
+            type: String,
+            required: 'Es requerido que ingrese un valor al campo'
+          },
+          valor:
+          {
+            type: String,
+            required: 'Es requerido que ingrese un valor al campo'
+          }
       },
       descripcion: {
-        type: String,
+          byte:
+          {
+            type: String,
+            required: 'Es requerido que ingrese un valor al campo'
+          },
+          ubicacion:
+          {
+            type: String,
+            required: 'Es requerido que ingrese un valor al campo'
+          },
+          valor:
+          {
+            type: String,
+            required: 'Es requerido que ingrese un valor al campo'
+          }
       },
       refPagad: {
-        type: String,
-        // required: ''
+            byte:{
+            type: String,
+            required: 'Es requerido que ingrese un valor al campo'
+          },
+          ubicacion:{
+            type: String,
+            required: 'Es requerido que ingrese un valor al campo'
+          },
+          valor:
+          {
+            type: String,
+            required: 'Es requerido que ingrese un valor al campo'
+          }
       },
       refBenef: {
-        type: String,
-        // required: ''
+          byte:
+          {
+            type: String,
+            required: 'Es requerido que ingrese un valor al campo'
+          },
+          ubicacion:
+          {
+            type: String,
+            required: 'Es requerido que ingrese un valor al campo'
+          },
+          valor:
+          {
+            type: String,
+            required: 'Es requerido que ingrese un valor al campo'
+          }
       },
       codAutori: {
-        type: String,
-        required: 'campo requerido'
+          byte:
+          {
+            type: String,
+            required: 'Es requerido que ingrese un valor al campo'
+          },
+          ubicacion:
+          {
+            type: String,
+            required: 'Es requerido que ingrese un valor al campo'
+          },
+          valor:
+          {
+            type: String,
+            required: 'Es requerido que ingrese un valor al campo'
+          }
       },
       procReg: {
-        type: String,
-        required: 'campo requerido'
+            byte:
+          {
+            type: String,
+            required: 'Es requerido que ingrese un valor al campo'
+          },
+          ubicacion:
+          {
+            type: String,
+            required: 'Es requerido que ingrese un valor al campo'
+          },
+          valor:
+          {
+            type: String,
+            required: 'Es requerido que ingrese un valor al campo'
+          }
       },
       respuesta: {
-        type: String,
-        required: 'campo requerido'
+            byte:
+          {
+            type: String,
+            required: 'Es requerido que ingrese un valor al campo'
+          },
+          ubicacion:
+          {
+            type: String,
+            required: 'Es requerido que ingrese un valor al campo'
+          },
+          valor:
+          {
+            type: String,
+            required: 'Es requerido que ingrese un valor al campo'
+          }
       },
-            Created_date: {
+      crc: {
+        type:String,
+        required: 'Es requerido que ingrese un valor al campo'
+      },
+      message: {
+        type:String,
+        required: 'Es requerido que ingrese un valor al campo'
+      },
+            Created_date:{
               type: Date,
               default: Date.now,
             },
             status: {
-              type: [{
-                type: String,
-                enum: ['recibido', 'En proceso', 'validado','repetido']
-              }],
-              default: ['recibido']
-            }
+              type: String,   
+          }
   });
   module.exports = mongoose.model('pagoEmpresarial2', pagoEmpresarial2Schema);

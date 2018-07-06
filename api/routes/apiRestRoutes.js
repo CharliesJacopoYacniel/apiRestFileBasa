@@ -18,6 +18,6 @@ app.route('/pe1')
 var apiRestpe2 = require('../controllers/apiRestPE2Controller');
 app.route('/pe2')
   .get(apiRestpe2.list_all_pe2Schema)
-  .post(apiRestpe2.create_a_pe2Schema);
+  .post(apiRestpe2.validate_a_pe2Schema);
 //=================================================================================================
 };

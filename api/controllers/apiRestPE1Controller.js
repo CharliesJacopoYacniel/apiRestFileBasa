@@ -19,7 +19,7 @@ exports.validate_a_pe1Schema = async function(req, res){
                 status:400,
                 message:'Parametro fecha es vacio',
                 object: fechaId,
-                });
+              });
     }else{ 
     // 
     var mensajeJson ="Guardado nuevo archivo, ";
@@ -54,12 +54,11 @@ exports.validate_a_pe1Schema = async function(req, res){
     }
 
     try {
-      var queryDateCrc= { Created_date :{ $lt : fechaId } , crc : { $eq : myCrc }};
-      // var queryDateCrc= { crc : { $eq : myCrc }};
       var counter= await new Promise(function(resolve, reject){
-        // { Created_date:{$lt:ISODate("2018-07-05 23:17:02.017Z")} ,crc: { $eq: "D7BCAC1BF132116AAF93A86A7531E" }}
-        pe1Schema.count(queryDateCrc, function(err, count){
-          if (!err) {
+        // var queryDateCrc= { Created_date :{ $lt : fechaId } , crc : { $eq : myCrc }};
+        var queryDateCrc= { crc : { $eq : myCrc }};
+        pe1Schema.find(queryDateCrc).countDocuments(function(err, count){
+          if (!err) {ß
             resolve(count);
           }else {
             reject('error');
@@ -137,6 +136,5 @@ exports.validate_a_pe1Schema = async function(req, res){
             }
           );
       });
-    // guardar datos de archivo si el que viene no existe au
     }//fin else fecha invalida
 };

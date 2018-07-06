@@ -74,7 +74,7 @@ var pagoEmpresarial1Schema = new Schema({
     neto: {
       byte:
       {
-        type: Number,
+        type: String,
         required: 'Es requerido que ingrese un valor al campo'
       },
       ubicacion:
