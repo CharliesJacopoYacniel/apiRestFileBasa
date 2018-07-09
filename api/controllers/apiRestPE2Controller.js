@@ -24,6 +24,16 @@ exports.validate_a_pe2Schema = async function(req, res){
   var mensajeJson ="Guardado nuevo archivo, ";
   var miStatus = "recibido" ;
 
+  var codeStatus=200;
+  var counter=0;
+  /*
+  100   Guardado pero repetido
+  200   Guardado con exito
+  300   Redireccion
+  400   Error del cliente al Guardar
+  500   Error del Servidor 
+  */
+
   let tipo=req.body.tipo.valor ;
   let beneficiario=req.body.beneficiario.valor;
   let banco=req.body.banco.valor;
@@ -62,11 +72,13 @@ exports.validate_a_pe2Schema = async function(req, res){
   try {
     var counter= await new Promise(function(resolve, reject){
       // var queryDateCrc= { Created_date :{ $lt : fechaId } , crc : { $eq : myCrc }};
-      var queryDateCrc= { crc : { $eq : myCrc }};
-      pe2Schema.find(queryDateCrc).countDocuments(function(err, count){
+      var queryDateCrc={ Created_date : { $gte : fechaId } ,crc : { $eq : myCrc }};
+      // pe2Schema.find(queryDateCrc).countDocuments(function(err, count){
+      pe2Schema.find(queryDateCrc).count(function(err, count){
         if (!err) {
           resolve(count);
         }else {
+          codeStatus=500;
           reject('error');
         }
       })
@@ -78,6 +90,7 @@ exports.validate_a_pe2Schema = async function(req, res){
   if( counter > 0 ){//el archivo se repite
     mensajeJson = mensajeJson + " El campo CRC se repite "+counter+" veces"; 
     miStatus = miStatus+ " repetido";
+    codeStatus=100;
     //  var consultaEquals = { crc: { $eq: myCrc }};
     // pe1Schema.find(consultaEquals, function(err, pe1Schema) {
     //   if(err){
@@ -161,6 +174,7 @@ exports.validate_a_pe2Schema = async function(req, res){
                 crc : myCrc ,
                 message : mensajeJson ,
                 paramFecha : fechaId ,
+                counter : counter ,
                 status : miStatus
           } 
 
@@ -171,7 +185,7 @@ exports.validate_a_pe2Schema = async function(req, res){
             }
             res.json(
               {
-                status:  200,
+                status:  codeStatus,
                 message: mensajeJson,
                 object:  pe2chema,
               }

@@ -24,6 +24,15 @@ exports.validate_a_pe1Schema = async function(req, res){
     // 
     var mensajeJson ="Guardado nuevo archivo, ";
     var miStatus = "recibido" ;
+    var codeStatus=200;
+    var counter=0;
+    /*
+    100   Guardado pero repetido
+    200   Guardado con exito
+    300   Redireccion
+    400   Error del cliente al Guardar
+    500   Error del Servidor 
+    */
 
     let beneficiario=req.body.beneficiario.valor;
     let banco=req.body.banco.valor;
@@ -54,13 +63,17 @@ exports.validate_a_pe1Schema = async function(req, res){
     }
 
     try {
-      var counter= await new Promise(function(resolve, reject){
-        // var queryDateCrc= { Created_date :{ $lt : fechaId } , crc : { $eq : myCrc }};
-        var queryDateCrc= { crc : { $eq : myCrc }};
-        pe1Schema.find(queryDateCrc).countDocuments(function(err, count){
-          if (!err) {ß
+      counter= await new Promise(function(resolve, reject){
+        // var queryDateCrc= { crc : { $eq : myCrc }};
+        // var queryDateCrc={ Created_date : { $gte :ISODate("2018-07-09 23:00:22.342Z")} ,crc : { $eq : "D36B82856E1B6DF6C7479CA9115B9" }};
+        var queryDateCrc={ Created_date : { $gte : fechaId } ,crc : { $eq : myCrc }};
+        // pe1Schema.find(queryDateCrc).countDocuments(function(err, count){
+        pe1Schema.find(queryDateCrc).count(function(err, count){
+          if(!err){
             resolve(count);
           }else {
+            console.log(err);
+            codeStatus=500;
             reject('error');
           }
         })
@@ -72,6 +85,7 @@ exports.validate_a_pe1Schema = async function(req, res){
     if( counter > 0 ){//el archivo se repite
       mensajeJson = mensajeJson + " El campo CRC se repite "+counter+" veces"; 
       miStatus = miStatus+ " repetido";
+      codeStatus=100;
       //  var consultaEquals = { crc: { $eq: myCrc }};
       // pe1Schema.find(consultaEquals, function(err, pe1Schema) {
       //   if(err){
@@ -120,17 +134,19 @@ exports.validate_a_pe1Schema = async function(req, res){
         crc : myCrc ,
         message : mensajeJson ,
         paramFecha : fechaId ,
+        counter : counter ,
         status : miStatus
       } 
 
       var new_pe1Schema = new pe1Schema( newFile );
       new_pe1Schema.save(function(err, pe1Schema){
           if (err){
+            codeStatus=500;
             res.send(err);
           }
           res.json(
             {
-              status:  200,
+              status:  codeStatus,
               message: mensajeJson,
               object:  pe1Schema,
             }

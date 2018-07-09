@@ -230,6 +230,12 @@ var pagoEmpresarial2Schema = new Schema({
         type:String,
         required: 'Es requerido que ingrese un valor al campo'
       },
+      paramFecha: {
+        type: String,
+      },
+      counter:{
+        type:Number,
+      },
             Created_date:{
               type: Date,
               default: Date.now,
