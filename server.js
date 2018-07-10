@@ -9,8 +9,10 @@ var express = require('express'),
   
   //fileBasa= nombre base de datos no relacional
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://dbConnect:2much4me@ds231961.mlab.com:31961/filebasa', {
+
+  var url = process.env.MONGOLAB_URI;
   // mongoose.connect('mongodb://localhost:27017/fileBasa', {
+    mongoose.connect(url, {
          connectTimeoutMS: 1000,
   // Note that mongoose will **not** pull `bufferCommands` from the query string
 });
