@@ -12,9 +12,8 @@ exports.list_all_pe1Schema = function(req, res) {
 };
 
 exports.validate_a_pe1Schema = async function(req, res){
-    // console.log('request data : ',req.body);
     var fechaId= req.body.paramFecha; 
-    if(fechaId == "" || fechaId == " " || fechaId == "  "){//parametro 
+    if(fechaId == "" || fechaId == " " || fechaId == "  "){
       res.json({
                 status:400,
                 message:'Parametro fecha es vacio',

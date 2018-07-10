@@ -11,9 +11,8 @@ exports.list_all_pe2Schema = function(req, res) {
 };
 
 exports.validate_a_pe2Schema = async function(req, res){
-  // console.log('request data : ',req.body);
   var fechaId= req.body.paramFecha; 
-  if(fechaId == "" || fechaId == " " || fechaId == "  "){//parametro 
+  if(fechaId == "" || fechaId == " " || fechaId == "  "){ 
     res.json({
               status:400,
               message:'Parametro fecha es vacio',
@@ -21,7 +20,6 @@ exports.validate_a_pe2Schema = async function(req, res){
               });
   }else{ 
 
-  // 
   var mensajeJson ="Guardado nuevo archivo, ";
   var miStatus = "recibido" ;
 
