@@ -81,7 +81,7 @@ exports.validate_a_pe1Schema = async function(req, res){
     }
 
     if( counter > 0 ){//el archivo se repite
-      mensajeJson = mensajeJson + " El campo CRC se repite "+counter+" veces"; 
+      mensajeJson = mensajeJson + " el campo CRC se repite "+counter+" veces"; 
       miStatus = miStatus+ " repetido";
       codeStatus=100;
     }
