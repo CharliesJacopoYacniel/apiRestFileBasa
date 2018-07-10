@@ -26,6 +26,7 @@ exports.validate_a_pe1Schema = async function(req, res){
     var miStatus = "recibido" ;
     var codeStatus=200;
     var counter=0;
+   
     /*
     100   Guardado pero repetido
     200   Guardado con exito
@@ -42,7 +43,6 @@ exports.validate_a_pe1Schema = async function(req, res){
     let descripcion=req.body.descripcion.valor;
     let myCrc= req.body.crc.valor;
     
-
     if(beneficiario.length<16){
       while (beneficiario.length<16){
         beneficiario = beneficiario +' ';
@@ -65,10 +65,9 @@ exports.validate_a_pe1Schema = async function(req, res){
     try {
       counter= await new Promise(function(resolve, reject){
         // var queryDateCrc= { crc : { $eq : myCrc }};
-        // var queryDateCrc={ Created_date : { $gte :ISODate("2018-07-09 23:00:22.342Z")} ,crc : { $eq : "D36B82856E1B6DF6C7479CA9115B9" }};
         var queryDateCrc={ Created_date : { $gte : fechaId } ,crc : { $eq : myCrc }};
         // pe1Schema.find(queryDateCrc).countDocuments(function(err, count){
-        pe1Schema.find(queryDateCrc).count(function(err, count){
+        pe1Schema.find(queryDateCrc).count(function( err, count ){
           if(!err){
             resolve(count);
           }else {
@@ -86,18 +85,6 @@ exports.validate_a_pe1Schema = async function(req, res){
       mensajeJson = mensajeJson + " El campo CRC se repite "+counter+" veces"; 
       miStatus = miStatus+ " repetido";
       codeStatus=100;
-      //  var consultaEquals = { crc: { $eq: myCrc }};
-      // pe1Schema.find(consultaEquals, function(err, pe1Schema) {
-      //   if(err){
-      //     res.send(err);
-      //   }
-      //   // var beneficiarioByte=pe1Schema[0].beneficiario.byte;
-      //   // var bancoByte=pe1Schema[0].banco.byte;
-      //   // var empresaByte=pe1Schema[0].empresa.byte;
-      //   // var servicioByte=pe1Schema[0].servicio.byte;
-      //   // var netoByte=pe1Schema[0].neto.byte;
-      //   // var descripcionByte=pe1Schema[0].descripcion.byte;
-      // });
     }
 
     let newFile={

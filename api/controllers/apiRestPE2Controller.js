@@ -20,12 +20,14 @@ exports.validate_a_pe2Schema = async function(req, res){
               object: fechaId,
               });
   }else{ 
+
   // 
   var mensajeJson ="Guardado nuevo archivo, ";
   var miStatus = "recibido" ;
 
-  var codeStatus=200;
-  var counter=0;
+  var codeStatus = 200;
+  var counter = 0;
+
   /*
   100   Guardado pero repetido
   200   Guardado con exito
@@ -33,7 +35,7 @@ exports.validate_a_pe2Schema = async function(req, res){
   400   Error del cliente al Guardar
   500   Error del Servidor 
   */
-
+ 
   let tipo=req.body.tipo.valor ;
   let beneficiario=req.body.beneficiario.valor;
   let banco=req.body.banco.valor;
@@ -71,8 +73,7 @@ exports.validate_a_pe2Schema = async function(req, res){
 
   try {
     var counter= await new Promise(function(resolve, reject){
-      // var queryDateCrc= { Created_date :{ $lt : fechaId } , crc : { $eq : myCrc }};
-      var queryDateCrc={ Created_date : { $gte : fechaId } ,crc : { $eq : myCrc }};
+      var queryDateCrc= { Created_date : { $gte : fechaId } ,crc : { $eq : myCrc }};
       // pe2Schema.find(queryDateCrc).countDocuments(function(err, count){
       pe2Schema.find(queryDateCrc).count(function(err, count){
         if (!err) {
@@ -91,18 +92,6 @@ exports.validate_a_pe2Schema = async function(req, res){
     mensajeJson = mensajeJson + " El campo CRC se repite "+counter+" veces"; 
     miStatus = miStatus+ " repetido";
     codeStatus=100;
-    //  var consultaEquals = { crc: { $eq: myCrc }};
-    // pe1Schema.find(consultaEquals, function(err, pe1Schema) {
-    //   if(err){
-    //     res.send(err);
-    //   }
-    //   // var beneficiarioByte=pe1Schema[0].beneficiario.byte;
-    //   // var bancoByte=pe1Schema[0].banco.byte;
-    //   // var empresaByte=pe1Schema[0].empresa.byte;
-    //   // var servicioByte=pe1Schema[0].servicio.byte;
-    //   // var netoByte=pe1Schema[0].neto.byte;
-    //   // var descripcionByte=pe1Schema[0].descripcion.byte;
-    // });
   }
 
   let newFile={
@@ -191,6 +180,5 @@ exports.validate_a_pe2Schema = async function(req, res){
               }
             );
         });
-
   }//fin else fecha invalida
 };
