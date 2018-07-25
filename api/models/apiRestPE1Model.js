@@ -4,103 +4,91 @@ var Schema = mongoose.Schema;
 //=================================================================================================
 var pagoEmpresarial1Schema = new Schema({
     beneficiario: {
-      byte:
-      {
+      byte:{
         type: String,
         required: 'Es requerido que ingrese un valor al campo'
       },
-      ubicacion:
-      {
+      ubicacion:{
         type: String,
         required: 'Es requerido que ingrese un valor al campo'
       },
-      valor:
-      {
+      valor:{
         type: String,
         required: 'Es requerido que ingrese un valor al campo'
       }
     },
     banco:{
-      byte:
-      {
+      byte:{
         type: String,
         required: 'Es requerido que ingrese un valor al campo'
       },
-      ubicacion:
-      {
+      ubicacion:{
         type: String,
         required: 'Es requerido que ingrese un valor al campo'
       },
-      valor:
-      {
+      valor:{
         type: String,
         required: 'Es requerido que ingrese un valor al campo'
       }
     },
     empresa:{
-      byte:
-      {
+      byte:{
         type: String,
         required: 'Es requerido que ingrese un valor al campo'
       },
-      ubicacion:
-      {
+      ubicacion:{
         type: String,
         required: 'Es requerido que ingrese un valor al campo'
       },
-      valor:
-      {
+      valor: {
         type: String,
         required: 'Es requerido que ingrese un valor al campo'
       }
     },
     servicio:{
-      byte:
-      {
+      byte: {
         type: String,
         required: 'Es requerido que ingrese un valor al campo'
       },
-      ubicacion:
-      {
+      ubicacion: {
         type: String,
         required: 'Es requerido que ingrese un valor al campo'
       },
-      valor:
-      {
+      valor: {
         type: String,
         required: 'Es requerido que ingrese un valor al campo'
       }
     },
     neto: {
-      byte:
-      {
+      byte: {
         type: String,
         required: 'Es requerido que ingrese un valor al campo'
       },
-      ubicacion:
-      {
+      ubicacion: {
         type: String,
         required: 'Es requerido que ingrese un valor al campo'
       },
-      valor:
-      {
+      valor: {
         type: String,
         required: 'Es requerido que ingrese un valor al campo'
       }
     },
     descripcion:{
-      byte:
-      {
+      byte: {
         type: String,
         required: 'Es requerido que ingrese un valor al campo'
       },
-      ubicacion:
-      {
+      ubicacion: {
         type: String,
         required: 'Es requerido que ingrese un valor al campo'
       },
-      valor:
-      {
+      valor: {
+        type: String,
+        required: 'Es requerido que ingrese un valor al campo'
+      }
+    },
+    fechaEmision: {
+      valor: {
         type: String,
         required: 'Es requerido que ingrese un valor al campo'
       }

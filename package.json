@@ -4,7 +4,7 @@
   "description": "Api rest validadion de archivo",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemom server.js"
   },
   "repository": {
     "type": "git",

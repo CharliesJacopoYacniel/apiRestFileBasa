@@ -8,7 +8,8 @@ exports.list_all_pe1Schema = function(req, res) {
     if (err)
       res.send(err);
     res.json(pe1Schema);
-  });
+  })
+  .sort({ Created_date: -1 });
 };
 
 exports.validate_a_pe1Schema = async function(req, res){
@@ -40,6 +41,7 @@ exports.validate_a_pe1Schema = async function(req, res){
     let servicio=req.body.servicio.valor;
     let neto= (req.body.neto.valor).toString();
     let descripcion=req.body.descripcion.valor;
+    let fechaEmision=req.body.fechaEmision.valor;
     let myCrc= req.body.crc.valor;
     
     if(beneficiario.length<16){
@@ -116,6 +118,9 @@ exports.validate_a_pe1Schema = async function(req, res){
         byte: req.body.descripcion.byte,
         ubicacion: req.body.descripcion.ubicacion,
         valor: descripcion
+      },
+       fechaEmision: {
+        valor: fechaEmision
       },
         crc : myCrc ,
         message : mensajeJson ,
