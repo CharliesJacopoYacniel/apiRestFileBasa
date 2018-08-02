@@ -10,7 +10,8 @@ var express = require('express'),
   //fileBasa= nombre base de datos no relacional
 mongoose.Promise = global.Promise;
 
-var url = process.env.MONGOLAB_URI || 'mongodb://localhost:27017/fileBasa' ||'mongodb://localhost:27017/filebasa';
+// var url = process.env.MONGOLAB_URI || 'mongodb://localhost:27017/fileBasa' ||'mongodb://localhost:27017/filebasa';
+var url='mongodb://localhost:27017/fileBasa';
     mongoose.connect(url,{ connectTimeoutMS: 1000, });
 
 app.use(bodyParser.urlencoded({ extended: true }));

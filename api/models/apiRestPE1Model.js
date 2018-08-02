@@ -2,117 +2,85 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 //=================================================================================================
-var pagoEmpresarial1Schema = new Schema({
-    beneficiario: {
-      byte:{
+var pagoEmpresarial1Schema = new Schema(
+{
+	data: {
+		response: {
+			montoapagar: { 
         type: String,
         required: 'Es requerido que ingrese un valor al campo'
       },
-      ubicacion:{
+			cuenta: { 
         type: String,
         required: 'Es requerido que ingrese un valor al campo'
       },
-      valor:{
-        type: String,
-        required: 'Es requerido que ingrese un valor al campo'
-      }
-    },
-    banco:{
-      byte:{
+			fechaCreacion:{ 
         type: String,
         required: 'Es requerido que ingrese un valor al campo'
       },
-      ubicacion:{
+			tamanoArchivo: { 
         type: String,
         required: 'Es requerido que ingrese un valor al campo'
       },
-      valor:{
-        type: String,
-        required: 'Es requerido que ingrese un valor al campo'
-      }
-    },
-    empresa:{
-      byte:{
+			montoIngresado: { 
         type: String,
         required: 'Es requerido que ingrese un valor al campo'
       },
-      ubicacion:{
+			md5: { 
         type: String,
         required: 'Es requerido que ingrese un valor al campo'
       },
-      valor: {
-        type: String,
-        required: 'Es requerido que ingrese un valor al campo'
-      }
-    },
-    servicio:{
-      byte: {
+			crc: { 
         type: String,
         required: 'Es requerido que ingrese un valor al campo'
       },
-      ubicacion: {
-        type: String,
-        required: 'Es requerido que ingrese un valor al campo'
-      },
-      valor: {
-        type: String,
-        required: 'Es requerido que ingrese un valor al campo'
-      }
-    },
-    neto: {
-      byte: {
-        type: String,
-        required: 'Es requerido que ingrese un valor al campo'
-      },
-      ubicacion: {
-        type: String,
-        required: 'Es requerido que ingrese un valor al campo'
-      },
-      valor: {
-        type: String,
-        required: 'Es requerido que ingrese un valor al campo'
-      }
-    },
-    descripcion:{
-      byte: {
-        type: String,
-        required: 'Es requerido que ingrese un valor al campo'
-      },
-      ubicacion: {
-        type: String,
-        required: 'Es requerido que ingrese un valor al campo'
-      },
-      valor: {
-        type: String,
-        required: 'Es requerido que ingrese un valor al campo'
-      }
-    },
-    fechaEmision: {
-      valor: {
-        type: String,
-        required: 'Es requerido que ingrese un valor al campo'
-      }
-    },
-    crc: {
-      type:String,
-      required: 'Es requerido que ingrese un valor al campo'
-    },
-    message: {
-      type:String,
-      required: 'Es requerido que ingrese un valor al campo'
-    },
-    paramFecha: {
-      type: String,
-    },
-    counter:{
-      type:Number,
-    },
-            Created_date: {
-              type: Date,
-              default: Date.now,
+			listCorreos: {
+				listaCorreosItem: 	[{
+            nombreUsuario: { 
+              type: String,
+              // required: 'Es requerido que ingrese un valor al campo'
             },
-            status: {
-                type: String,   
-            }
+            correo: { 
+              type: String,
+              // required: 'Es requerido que ingrese un valor al campo'
+            },
+          }]
+        },
+			infoCliente: {
+				nombre: { 
+          type: String,
+          required: 'Es requerido que ingrese un valor al campo'
+        },
+				empresa: { 
+          type: String,
+          required: 'Es requerido que ingrese un valor al campo'
+        },
+				otrosDatos: {
+					data: { 
+            type: String,
+            required: 'Es requerido que ingrese un valor al campo'
+          }
+				}
+			},
+			parametroAdicionalColecction : {
+				help:{ 
+          type: String,
+          required: 'Es requerido que ingrese un valor al campo'
+        },
+      },
+      Created_date:{
+        type: Date,
+        default: Date.now,
+      },
+      paramFecha: {
+        type: Date,
+        // required: 'Es requerido que ingrese un valor al campo'
+      },
+      counter:{
+        type:Number,
+      },
+		}
+	}
 });
+
 module.exports = mongoose.model('pagoEmpresarial1', pagoEmpresarial1Schema);
