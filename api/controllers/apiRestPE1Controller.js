@@ -65,6 +65,8 @@ exports.validate_a_pe1Schema = async function(req, res){
   let myCrc= req.body.data.request.crc;
   let paramFecha=req.body.data.request.paramFecha;
   let correos=req.body.listCorreos.listaCorreosItem;
+  let infoCliente=req.body.data.request.infoCliente;
+  // console.log(JSON.stringify(infoCliente));
   // console.log('Busqueda desde : ',paramFecha);
   let estadoFlujo=req.body.data.request.estadoFlujo;
   let cadena='';
@@ -108,6 +110,7 @@ try {
           codeStatus=100;
           mensajeJson="Recibido nueva info de archivo para Consulta, ";
           // console.log(counter);
+          if(counter==0){mensajeJson+="El archivo No se repite";}
           if(counter>0){//el archivo se repite
             mensajeJson = mensajeJson + " El campo MD5 se repite "+counter+" veces"; 
             miStatus = miStatus+ " repetido";
@@ -149,13 +152,7 @@ try {
                 listCorreos: {
                   listaCorreosItem: JSON.parse(JSON.stringify(correos))
                 },
-                infoCliente: {
-                  nombre: "TEST Utimo antes hacer commit",
-                  empresa: "valor",
-                  otrosDatos: {
-                    data: "valor"
-                  }
-                },
+                infoCliente: infoCliente,
                 parametroAdicionalColecction:{
                   help: varHelp
                 },
@@ -172,7 +169,7 @@ try {
                 codeStatus=500;
                 res.send(err);
               }
-              sendEmail(cadena);//AQUI ENVIO LOS CORREOS
+              // sendEmail(cadena);//AQUI ENVIO LOS CORREOS
               res.json(
                 {
                   status:  codeStatus,
