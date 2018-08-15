@@ -2,7 +2,8 @@
 var mongoose = require('mongoose'),
    pe1Schema = mongoose.model('pagoEmpresarial1')
    ;
-// ======= INCIO CODIGO PARA CORREO =====
+var fs = require('fs');
+   // ======= INCIO CODIGO PARA CORREO =====
 const { createServer } = require('http')  
 const nodemailer = require('nodemailer') 
 const server = createServer()
@@ -10,28 +11,41 @@ const server = createServer()
 server.on('error', (err) => console.log(err.stack))
 
 function sendEmail(cadenaCorreos) {  
+  let htmlstream = fs.createReadStream('mail.html');
   let transporter = nodemailer.createTransport({
-    service: 'Gmail',
-    auth: {
-      type: 'OAuth2',
-      user: 'charliesyacniel@gmail.com',
-      clientId: '683856281309-ifkn7bbid90lb6rlbi42f9q9nc4ahb8i.apps.googleusercontent.com',
-      clientSecret: 'tPZG7rDTNLB3pRCfUKeZpqpx',
-      refreshToken: '1/zrXz74Ofqm5M0k6mBUjnNnzoLYweFtwt-5LNXgePDmGxcfhrwvt7bcfo8Fmqka7K'
-    }
-  })
+          service: 'Gmail',
+          auth: {
+            type: 'OAuth2',
+            user: 'charliesyacniel@gmail.com',
+            clientId: '683856281309-ifkn7bbid90lb6rlbi42f9q9nc4ahb8i.apps.googleusercontent.com',
+            clientSecret: 'tPZG7rDTNLB3pRCfUKeZpqpx',
+            refreshToken: '1/zrXz74Ofqm5M0k6mBUjnNnzoLYweFtwt-5LNXgePDmGxcfhrwvt7bcfo8Fmqka7K'
+          }
+        });
 
   let mailOptions = {
-    from: '<charliesyacniel@gmail.com>',
-    to: cadenaCorreos,
-    subject: 'My tes de mail en node.js',
-    html: ' <h1> test de el commit</h1> '
-  }
-
-  transporter.sendMail(mailOptions, (err, info) => {
-    if (err) throw new Error(err)
-    console.log('Email send');
-  })
+          from: '<charliesyacniel@gmail.com>',
+          to: cadenaCorreos,
+          subject: 'Estado de flujo Archivos de Pago',
+          html: htmlstream, 
+          attachments: [{
+            filename: 'logo.png',
+            path: 'logo.png',
+            cid: 'unique@kreata.ee' //same cid value as in the html img src
+        }
+        // ,{
+        //   filename: 'font.jpg',
+        //     path: 'font.jpg',
+        //     cid: 'unique12@kreata.ee' 
+        // }
+        ]
+        }
+      
+      transporter.sendMail(mailOptions, (err, info) => {
+          if (err) throw new Error(err)
+          console.log('Email send');
+        });       
+ 
 }
 // ==== FIN CODIGO PARA CORREO ======
 //=================================================================================================
@@ -76,7 +90,6 @@ exports.validate_a_pe1Schema = async function(req, res){
   });
   // console.log('cadena de correos',cadena);
   cadena=cadena.replace(',','');
-
 // Consulta      = 1
 // Operando      = 2
 // Autorizado    = 3
@@ -99,7 +112,6 @@ try {
 }catch (error){
   console.log(error);
 }
-
 
   switch(estadoFlujo)
     {
@@ -169,7 +181,7 @@ try {
                 codeStatus=500;
                 res.send(err);
               }
-              // sendEmail(cadena);//AQUI ENVIO LOS CORREOS
+              sendEmail(cadena);//AQUI ENVIO LOS CORREOS
               res.json(
                 {
                   status:  codeStatus,
@@ -187,7 +199,7 @@ try {
             {
               status:  codeStatus,
               message: mensajeJson,
-              object:  {"help":varHelp},
+              object:  {"help":varHelp ,"opt":"| Consulta = 1 | Operando = 2 |  Autorizado  = 3 |"},
             }
           );
     }

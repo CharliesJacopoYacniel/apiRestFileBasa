@@ -4,7 +4,6 @@ var express = require('express'),
   port = process.env.PORT || 3000,
   mongoose = require('mongoose'),
   pe1 = require('./api/models/apiRestPE1Model'), //created model loading here
-  pe2 = require('./api/models/apiRestPE2Model'),
   bodyParser = require('body-parser');
   
   //fileBasa= nombre base de datos no relacional
